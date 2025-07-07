@@ -46,9 +46,9 @@
 
 #### 	计算机的体系结构
 
-##### 			使用者 => 应用软件 => 系统软件 => 硬件设备
+**使用者 => 应用软件 => 系统软件 => 硬件设备**
 
-##### 			=> 其中系统软件分为:内核(Kerne1)和外壳(She11)
+**=> 其中系统软件分为:内核(Kerne1)和外壳(She11)**
 
 
 
@@ -580,7 +580,7 @@ public class TimeArithmetic {
 } 
 ```
 
-#### 注意事项：
+#### 注意事项
 
 +   `+` 既可以作为算术运算符也可以作为字符串连接符，区分方式如下:
 
@@ -590,7 +590,7 @@ public class TimeArithmetic {
 
 ### 二、关系运算符
 
-#### 代码案例：
+#### 代码案例
 
 ```Java
 public class RelationTest {
@@ -625,7 +625,7 @@ public class RelationTest {
 
 ### 三、自增减运算符
 
-#### 代码案例：
+#### 代码案例
 
 ```Java
 /*
@@ -718,7 +718,7 @@ public class LogicTest {
 
 ### 四、条件运算符（三目运算符）
 
-#### 代码案例：
+#### 代码案例
 
 ```java
 /*
@@ -1276,7 +1276,7 @@ public class TestSwitchMenu {
 
 ​		case 字面值2:语句块2;break;
 
-###### 		……
+……
 
 ​		default: 语句块n;
 
@@ -1602,7 +1602,7 @@ public class ArrayArrayTest {
 + 类定义了该类型对象的数据结构，称之为 **成员变量** 同时，也定义了一些可以被调用的功能，称之为**成员方法**。
 + 类是用于构建对象的模板，对象的实质就是**内存**中块存储区域，其数据结构由定义它的类来决定。
 
-##### 如：
+**如：**
 
 ​	String name "富强";	int age = 18;	……
 
@@ -1628,13 +1628,13 @@ public class ArrayArrayTest {
 
 ​	}
 
-##### 如：
+**如：**
 
 ​	class Person {
 
 ​	}
 
-##### 注意：
+**注意：**
 
 + 当类名有多个单词组成时，要求每个单词的首字母都要大写；
 
@@ -1652,7 +1652,7 @@ class 类名 {
 	}
 ```
 
-##### 如：
+**如：**
 
 ```
 	class Person {
@@ -1664,11 +1664,11 @@ class 类名 {
 	}
 ```
 
-##### 注意：
+**注意：**
 
 + 当成员变量名由多个单词组成时，要求从第二个单词起每个单词首字母大写；
 
-##### 扩展：
+**扩展：**
 
 + 局部变量 - 主要指在方法体中声明的变量，作用范围从声明开始到方法体结束
 + 成员变量 - 主要指在方法体外类体内声明的变量，作用范围从声明到类体结束
@@ -1687,7 +1687,7 @@ new 类名 () {
 
 }
 
-##### 注意：
+**注意：**
 
 + 一个类定义完毕后，使用new关键字创建/构造对象的过程叫做 类的实例化;
 + 创建对象的本质就是在内存中的堆区申请存储空间，来存放该对象独有的特征信息
@@ -1737,7 +1737,7 @@ public class Person {
 
 类名 引用变量名
 
-##### 如：
+**如：**
 
 `Person p;`  -  表示声明Person类型的引用变量p，本质上在栈区申请存储空间
 
@@ -1745,7 +1745,7 @@ public class Person {
 
 引用变量名 . 成员变量名;
 
-##### 如：
+**如：**
 
 `p.name = "zhangfei";`	-  表示使用引用变量p访问所指向堆区对象的姓名特征
 
@@ -1829,7 +1829,7 @@ public class Person {
 
 }
 
-##### 如：
+**如：**
 
 ​	class Person {
 
@@ -1850,7 +1850,7 @@ public class Person {
 + 返回值主要指从方法体内向方法体外返回的数据内容；
 + 返回值类型主要指返回值的数据类型，可以是基本数据类型，也可以是引用数据类型；
 
-##### 如：
+**如：**
 
 + 当返回的数据内容是66时，则返回值类型写`int`即可;
 + 当返回的数据内容是3.14时，则返回值类型写`double`即可;
@@ -1858,7 +1858,7 @@ public class Person {
 
 在方法体中使用return关键字来返回数据内容
 
-##### 如：
+**如：**
 
 + 当返回的数据内容是66时，则方法体中写:return  66;
 + 当返回的数据内容是num时，则方法体中写:return num;
@@ -1872,7 +1872,7 @@ public class Person {
 
   ​	数据类型 形参名1，数据类型 形参名2, ......
 
-##### 如：
+**如：**
 
 + 当传入的数据内容是66时，则形参列表写为:  ` int i `  即可;
 + 当传入的数据内容是3.14时，则形参列表写为:  `double d`  即可;
@@ -1884,7 +1884,7 @@ public class Person {
 
 ​	成员方法体主要编写描述该方法功能的语句
 
-##### 如：
+**如：**
 
 + 当该方法的功能就是打印时，则方法体中写 `System.out.println("...”);`即可
 + 当该方法的功能就是返回66时，则方法体中写`return 66;`即可
@@ -1895,11 +1895,11 @@ public class Person {
 
 ​	引用变量名.成员方法名(实参列表);
 
-##### 如：
+**如：**
 
 ​	`p.show();`	-  表示使用引用变量p调用show方法
 
-##### 注意：
+**注意：**
 
 + 实际参数列表主要用于对形式参数列表进行初始化操作,因此参数的个数、类型、顺序等都必须与形参列表保持一致;
 
@@ -1960,7 +1960,7 @@ public class Person {
 }
 ```
 
-##### 如：
+**如：**
 
 ​	Person p=new Person();	-  声明Person类型的引用指向Person类型的对象
 
@@ -1980,7 +1980,7 @@ public class Person {
 
 ​	}
 
-##### 如：
+**如：**
 
 ​	class Person {
 
@@ -1990,7 +1990,7 @@ public class Person {
 
 ​	}
 
-##### 注意：
+**注意：**
 
 + 构造方法的名称与类名完全相同，没有返回值类型连void都不许有
 + 当使用new关键字构造对象时会自动调用构造方法进行成员变量的初始化工作。
@@ -2057,7 +2057,7 @@ public class OverloadTest {
 
 ​	对于调用者来说只需要记住一个方法名就可以调用各种不同的版本实现不同的效果。
 
-##### 如：
+**如：**
 
 ​	`char c = 'a';`
 
@@ -2193,7 +2193,7 @@ public class JiechengTest {
 
 + 在一个方法体的内部调用当前方法自身的形式，叫做递归。
 
-##### 如：
+**如：**
 
 ​	void show() {
 
@@ -2201,11 +2201,11 @@ public class JiechengTest {
 
 ​	}
 
-##### 案例：
+**案例：**
 
 ​	自定义成员方法实现参数n阶乘的计算并返回
 
-##### 解析：
+**解析：**
 
 ​	5 ! = 5 * 4 * 3 * 2 * 1；
 
@@ -2368,7 +2368,7 @@ class Singleton {
 
 + 只有隶属于类(所有对象共享)的属性才能加static，static不能随便加。
 
-##### 案例：
+**案例：**
 
 ​	编程实现Singleton类的封装；
 
@@ -2453,7 +2453,7 @@ public class TestStaticBlock {
 + 当多个类之间有相同的特征和行为时，可以将相同的内容提取出来组成一个公共类，让多个类吸收公共类中已有特征和行为而在多个类的内部编写自己独有特征和行为的方式，叫做继承。
 + 使用继承可以提高代码的复用性和扩展性以及可维护性。
 
-##### 如：
+**如：**
 
 `public class StudentextendsoPerson（） {}`	-  表示Student类继承自Person类
 
@@ -2485,7 +2485,7 @@ public class TestStaticBlock {
 + 使用继承可以提高代码的复用性和扩展性以及可维护性。
 + 在Java语言中使用extends(扩展)关键字来表达继承关系
 
-##### 如：
+**如：**
 
 + `public class Worker extends Person`	- 表示Worker类继承自Person类
 
@@ -2644,13 +2644,13 @@ public class PersonWorkerTest {
 
 ​	父类类型 引用变量名 = new 子类类型();
 
-##### 如：
+**如：**
 
 ​	Person pw=new Worker();
 
 ​	pw.show();
 
-##### 解析：
+**解析：**
 
 ​	编译阶段调用Person类中show方法，在运行阶段调用Worker类中重写以后的show方法
 
@@ -2730,7 +2730,7 @@ public class ShapeTest {
 
 ​	访问控制符 返回值类型 方法名称 (形参列表)
 
-##### 如：
+**如：**
 
 ​	public abstract void cry();
 
@@ -2840,7 +2840,7 @@ public class ShapeTest {
 
 ​	}
 
-##### 如：
+**如：**
 
 ​	class A {
 
@@ -3031,7 +3031,7 @@ public class StudentTest {
 
 ### 二、包装类和数字处理类
 
-##### 如：
+**如：**
 
 ​	Person p=newPerson();	- 声明Person类型的引用指向Person类型的对象
 
@@ -3214,7 +3214,7 @@ public class StringConstructorTest {
 
 该类描述的字符串内容是个常量，一旦创建完毕后则不能更改，因此可以被共享。
 
-##### 如：
+**如：**
 
 ​	String str1 =" abc "
 
@@ -3458,7 +3458,7 @@ public class SubstringDemo {
 
 ### 二、StringBuilder类和StringBuffer类
 
-##### 如：
+**如：**
 
 ​	`String str1  = "ab";`
 
@@ -3772,7 +3772,7 @@ public class ListOperationsExample {
 
 ​	为了避免上述错误的发生，从jdk1.5开始提出泛型机制，也就是在集合名称的右侧使用<数据类型>的方式明确要求该集合可以存放的元素类型，若放入其它类型则编译报错
 
-##### 如：
+**如：**
 
 ​	List It1 = new LinkedList();	- 可以放入任意类型对象，取出麻烦
 
@@ -3812,7 +3812,7 @@ public class ListExample {
 
 ​	由于E支持的数据类型非常广泛，因此得名为"泛型"。
 
-##### 如：
+**如：**
 
 ​	// 其中i叫做形式参数，负责占位						其中E叫做形式参数，负责占位
 
@@ -4781,3 +4781,597 @@ public class ObjectInputStreamTest {
 + 执行main方法的线程叫做主线程，执行run方法的线程叫做子线程。
 + main方法是程序的入口，最开始只有主线程来依次执行main方法中的代码，当start方法调用成功后，线程的个数瞬间由1个变成了2个，其中子线程去执行run方法，主线程继续执行main方法的代码，两个线程各自独立运行互不影响。
 + 当run方法执行完毕后子线程结束，当main方法执行完毕后主线程结束，但两个线程0谁先执行没有明确的规定，取决于操作系统的调度算法。
+
+##### 注意
+
+​	线程创建和启动的方式相对来说代码简单，但Java语言中只支持单继
+
+承，若该类继承Thread类后则无法继承其它类
+
+#### 匿名内部类创建线程
+
+```java
+public class NoNameThreadTest {
+	public void main(String[] args) {
+		Thread t1 = new Thread() {
+			@Override
+			public void run(){
+				System.out.println("张三说:在吗?");
+			}
+			t1.start();
+		}
+		new Thread() {
+			@Override
+			public void run() {
+				System.out.println("张三说:在吗?");
+			}
+		}.start();
+		// 2.使用接口和匿名内部类的方式创建和启动线程
+		/*
+        Runnable ra = new Runnable() {
+			@Override
+			public void run() {
+				System.out.println("李四说：不在");
+			}
+		};
+		Thread t2 = new Thread(ra);
+		t2.start();
+        */
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("李四说：不在");
+            }
+        }).start();
+	}
+}
+```
+
+#### Thread类的常用方法
+
+|           **方法声明**           |                         **功能说明**                         |
+| :------------------------------: | :----------------------------------------------------------: |
+|      `static void yield()`       | 当前线程让出处理器（离开Running状态），使当前线程进入Runnable状态等待 |
+|    `static void sleep(times)`    | 使当前线程从Running放弃处理器进入Block状态，休眠`times`毫秒后返回Runnable；若休眠期间被其他线程打断，会抛出`InterruptedException` |
+|       `int getPriority()`        |               获取线程的优先级（1-10，默认5）                |
+| `void setPriority(int priority)` | 设置线程优先级（1-10），优先级高的线程获得CPU的概率更高（但依赖系统调度实现） |
+|          `void join()`           |   等待该线程执行终止（无限阻塞当前线程，直到目标线程结束）   |
+|     `void join(long millis)`     |          最多等待指定毫秒数，超时后继续执行当前线程          |
+|       `boolean isDaemon()`       |       判断线程是否为守护线程（返回`true`表示守护线程）       |
+|   `void setDaemon(boolean on)`   | 设置线程为守护线程（必须在`start()`前调用，守护线程会随主线程结束而强制终止） |
+
+
+
+# Java网络编程socket
+
+### 一、线程的同步机制
+
+##### 基本概念
+
+​	当多个线程同时访问同一一种共享资源时，可能会造成数据的覆盖等不一致性问题，此时就需要进行线程之间的通信和协调，该机制就叫线程的同步机制。
+
+##### 解决方案
+
++ 由程序结果可知：当两个线程同时进行取款时，导致最终的账户余额不合理
++ 引发原因：线程一还没有执行完毕取款操作，此时线程二已经开始取款操作
++ 解决方案：让两个线程的并发操作改为串行操作即可，也就是依次执行取款操作
++ 方案的缺点：若依次启动多个线程则导致多线程的意义不复存在。
+
+##### 实现方式
+
+​	在Java语言中使用`synchronized`关键字来实现同步/对象锁机制，来保证线程执行该段代码时的原子性(要么不执行，要么就执行完整)，具体方式如下：
+
+​	（1）使用同步语句块的方式来锁定部分代码；
+
+​		synchronized(任意类型的引用) {
+
+​			编写需要锁定的代码;
+
+​		}
+
+​	（2）使用同步方法的方式来锁定所有代码；
+
+##### 原理分析
+
+​	当多个线程调用start方法后同时去抢占共享资源，由于同步锁的存在导致只有一个线能够抢到共享资源并进行加锁处理，其它没有抢到共享资源的线程进入阻塞状态，当该线程执行完毕所有锁定的代码后自动释放同步锁，此时阻塞状态的所有线程继续抢占共享资源，抢不到的线程再次回到阻塞状态。
+
+#### 死锁的概念
+
+**线程一执行的代码：**
+
+```java
+public void run() {
+
+		synchronized (a) {	持有同步锁a，等待同步锁b
+
+			synchronized (b) {
+
+				……
+
+			}
+
+		}
+
+	}
+```
+
+**线程二执行的代码：**
+
+```java
+public void run() {
+
+		synchronized (b) {	持有同步锁b，等待同步锁a
+
+			synchronized (a) {
+
+				……
+			}
+
+		}
+
+	}
+```
+
+
+
+##### 经验分享
+
+​	在以后的开发中尽量少使用同步代码块的嵌套结构！
+
+
+
+### 二、网络编程的常识
+
+#### 七层网络模型
+
++ ISO(国际标准委员会组织)将数据的传递从逻辑上划分为以下七层:
+  + 数据链路层、物理层应用层、表示层会话层。传输层、网络层
++ 当发送数据时，需要对发送的内容按照上述七层模型进行层层加包再发送出去；
++ 当接收数据时，需要对接受的内容按照上述七层模型相反的次序层层拆包再解析出来
+
+#### IP地址
+
+如：
+
+​	192.168.1.1	-  是绝大多数路由器的登录地址，进行账号密码的配置以及Mac地址过滤
+
+​	IP地址	-  是互联网中的唯一标识，用于定位到具体某一台设备
+
+​	IP地址本质上是由32位二进制组成的整数，叫做`IPv4`，当然也有128位二进制组成的整数，叫做`IPv6`，目前主流的还是`IPv4`
+
+​	日常生活中采用点分十进制表示法进行IP地址的描述，也就是将每个字节的二进制转换为一个十进制整数，不同的十进制整数之间采用小数点隔开。
+
+如：
+
+​	0x01020304	=>	1.2.3.4
+
+#### 端口号
+
+​	IP地址	-  可以定位到具体某一台设备
+
+​	端口号	-  可以定位到具体某一个进程
+
+​	网络编程需要提供：IP地址+端口号
+
+​	端口号本质上是由16位二进制组成的整数，表示的范围：0~65535，其中0~1024之间的端口号通常被系统占用，因此开发中从1025开始使用。
+
+
+
+### 三、基于TCP协议的编程模型
+
+#### 编程模型
+
+服务器:
+（1）创建`ServerSocket`类型的对象并提供端口号；
+
+（2）等待客户端的连接请求，调用accept方法；
+
+（3）使用输入输出流进行通信；
+
+（4）关闭`Socket`;
+
+#### 代码案例
+
+```java
+import java.io.*;
+import java.net.*;
+
+public class ServerStringTest {
+    public static void main(String[] args) {
+        try {
+            // 1. 创建ServerSocket类型的对象并提供端口号
+            ServerSocket serverSocket = new ServerSocket(8888);
+            
+            // 2. 等待客户端的连接请求，调用accept方法
+            System.out.println("服务器启动，等待客户端连接...");
+            Socket socket = serverSocket.accept();
+            System.out.println("客户端已连接：" + socket.getInetAddress());
+            
+            // 3. 使用输入输出流进行通信
+            // 获取输入流（接收客户端消息）
+            BufferedReader in = new BufferedReader(
+                new InputStreamReader(socket.getInputStream()));
+            // 获取输出流（向客户端发送消息）
+            PrintWriter out = new PrintWriter(
+                new OutputStreamWriter(socket.getOutputStream()), true);
+            
+            // 接收客户端消息
+            String clientMessage = in.readLine();
+            System.out.println("收到客户端消息：" + clientMessage);
+            
+            // 向客户端发送响应
+            out.println("服务器已收到你的消息：" + clientMessage);
+            
+            // 4. 关闭Socket
+            in.close();
+            out.close();
+            socket.close();
+            serverSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+
+
+# Java常用的设计模式
+
+### 一、常用的设计原则
+
+#### 软件的开发流程
+
+​	**需求分析文档 => 概要设计文档 => 详细设计文档 => 编码和测试 => **
+
+**安装和调试 => 维护和升级**
+
+##### 1.2 常用的设计原则
+
+​	**开闭原则**
+
++ 对扩展开放，对修改关闭
+
++ 提高了代码的扩展性和维护性。
+
+如:
+
+```java
+public class Person {
+
+	private String name;
+
+	private int age;
+
+	……
+
+}
+
+public class SubPerson extends Person {
+
+	private boolean gender;
+
+	……
+
+}
+```
+
+**里氏代换原则**
+
++ 任何父类可以出现的地方，子类一定可以出现
+
++ 子类 is a 父类。
+
++ 在以后的开发中多使用继承和多态的理念。
+
+如：
+
+```java
+public static void draw(Shape s){
+
+	s.show();
+
+}
+
+ShapeTest.draw(new Rect(1, 2, 3, 4));
+
+ShapeTest.draw(new Circle(5, 6, 7));
+```
+
+**依赖倒转原则**
+
++ 尽量多依赖于抽象类和接口，而不是具体实现类
+
++ 在以后的开发中多使用抽象类和接口，对子类具有强制性和规范性
+  如：
+
+```java
+public abstract class Account {
+    public abstract double getLixi();
+}
+
+public class FixedAccount extends Account {
+    @Override 
+    public double getLixi(){}
+}
+```
+
+**接口隔离原则**
+
++ 尽量依赖于小接口而不是大接口，避免接口的污染。
+
+如：
+
+```java
+public interface RunAnimal {
+    public abstract void run(); // 描述奔跑的行为
+}
+public interface FlyAnimal {
+    public abstract void fly(); // 描述飞行的行为
+}
+public class Dog implements RunAnimal {
+    @Override
+    public void run() {
+    	...
+    }
+}
+```
+
+**迪米特法则（最少知道原则）**
+
+- 核心定义：一个实体应当尽量少与其他实体发生相互作用
+- 关键特性：
+  - 低耦合（减少实体间的依赖关系）
+  - 高内聚（将实体功能尽量聚集在内部）
+- 补充说明：高内聚要求将实体应有的功能集中封装在该实体内部
+
+**合成复用原则**
+
+- 核心定义：尽量多使用合成/聚合的方式，而不是继承的方式
+
+  ```java
+  public class A {
+      public void show() { ... }
+      ...
+  }
+  
+  public class B {
+      private A a;
+  	public void test()
+          //调用show方法
+          a.show();
+  }
+  ```
+
+### 二、常用的设计模式
+
+##### 基本概念
+
+​	设计模式是软件工程中用来解决常见设计问题的一些通用解决方案。常见的设计模式可以分为三大类：创建型模式、结构型模式和行为型模式。
+
+##### 常用的设计模式
+
+​	单例设计模式、模板设计模式、工厂方法模式、抽象工厂模式。
+
+##### 普通工厂方法的代码案例
+
+```java
+// 1. 定义产品接口
+interface Product {
+    void use();
+}
+
+// 2. 实现具体产品
+class ConcreteProductA implements Product {
+    @Override
+    public void use() {
+        System.out.println("使用产品A");
+    }
+}
+
+class ConcreteProductB implements Product {
+    @Override
+    public void use() {
+        System.out.println("使用产品B");
+    }
+}
+
+// 3. 定义工厂接口
+interface Factory {
+    Product createProduct();
+}
+
+// 4. 实现具体工厂
+class ProductAFactory implements Factory {
+    @Override
+    public Product createProduct() {
+        return new ConcreteProductA();
+    }
+}
+
+class ProductBFactory implements Factory {
+    @Override
+    public Product createProduct() {
+        return new ConcreteProductB();
+    }
+}
+
+// 5. 客户端使用示例
+public class FactoryMethodDemo {
+    public static void main(String[] args) {
+        // 创建A产品工厂
+        Factory factoryA = new ProductAFactory();
+        Product productA = factoryA.createProduct();
+        productA.use();  // 输出：使用产品A
+
+        // 创建B产品工厂
+        Factory factoryB = new ProductBFactory();
+        Product productB = factoryB.createProduct();
+        productB.use();  // 输出：使用产品B
+    }
+}
+```
+
+##### 静态工厂方法的代码案例
+
+```java
+// 1. 定义产品接口
+interface Product {
+    void use();
+}
+
+// 2. 实现具体产品类
+class ConcreteProductA implements Product {
+    @Override
+    public void use() {
+        System.out.println("使用产品A");
+    }
+}
+
+class ConcreteProductB implements Product {
+    @Override
+    public void use() {
+        System.out.println("使用产品B");
+    }
+}
+
+// 3. 创建静态工厂类
+class ProductFactory {
+    // 静态工厂方法
+    public static Product createProduct(String type) {
+        switch (type) {
+            case "A":
+                return new ConcreteProductA();
+            case "B":
+                return new ConcreteProductB();
+            default:
+                throw new IllegalArgumentException("无效的产品类型");
+        }
+    }
+}
+
+// 4. 客户端使用示例
+public class Client {
+    public static void main(String[] args) {
+        // 通过静态工厂方法创建产品
+        Product productA = ProductFactory.createProduct("A");
+        Product productB = ProductFactory.createProduct("B");
+        
+        productA.use();  // 输出：使用产品A
+        productB.use();  // 输出：使用产品B
+    }
+}
+```
+
+
+
+### 三、常用的查找算法
+
+#### 线性查找算法的实现
+
+```java
+public class FindTest {
+    // 自定义成员方法实现线性查找算法
+    // 从参数指定的数组中查找参数指定元素所在的下标并返回出来
+    public int find(int[] arr, int num) {
+        for (int i = 0; i < arr.length; i++) {
+            if (num == arr[i]) {
+                return i; // 表示查找成功
+            }
+        }
+        return -1; // 表示查找失败
+    }
+
+    public static void main(String[] args) {
+        int[] brr = {10, 20, 30, 40, 50};
+        int num = 20;
+        
+        FindTest findTest = new FindTest();
+        int result = findTest.find(brr, num);
+        
+        System.out.println("元素 " + num + " 在数组中的下标是：" + result);
+    }
+}
+```
+
+
+
+#### 二分查找算法的实现
+
+```java
+/**
+ * 二分查找算法实现
+ * @param arr 有序数组（必须已排序）
+ * @param left 查找范围左边界（初始为0）
+ * @param right 查找范围右边界（初始为arr.length-1）
+ * @param num 目标查找元素
+ * @return 目标元素下标（未找到返回-1）
+ */
+public static int findBinary(int[] arr, int left, int right, int num) {
+    if (left <= right) {
+        // 1. 计算中间元素下标
+        int p = (left + right) / 2;
+        
+        // 2. 找到目标元素直接返回
+        if (num == arr[p]) {
+            return p;
+        }
+        
+        // 3. 目标在左半区
+        if (num < arr[p]) {
+            return findBinary(arr, left, p - 1, num);
+        }
+        
+        // 4. 目标在右半区
+        return findBinary(arr, p + 1, right, num);
+    }
+    return -1; // 查找失败
+}
+
+// 使用示例
+public static void main(String[] args) {
+    int[] arr = {10, 20, 30, 40, 50}; // 必须是有序数组
+    int target = 30;
+    int index = findBinary(arr, 0, arr.length - 1, target);
+    System.out.println("元素 " + target + " 的下标是：" + index);
+}
+```
+
+
+
+#### 冒泡排序算法的实现
+
+```java
+public class SortTest {
+    /**
+     * 冒泡排序算法实现
+     * @param arr 待排序的数组
+     */
+    public static void bubble(int[] arr) {
+        // 1. 外层循环控制比较轮数（n-1轮）
+        for(int i = 1; i < arr.length; i++) {
+            // 2. 内层循环控制当前轮的比较次数（每轮减少i个已排序元素）
+            for(int j = 0; j < arr.length - i; j++) {
+                // 3. 相邻元素逆序时交换位置
+                if(arr[j] > arr[j+1]) {
+                    // 使用临时变量完成交换
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
+                }
+            }
+        }
+    }
+
+    // 测试方法
+    public static void main(String[] args) {
+        int[] arr = {5, 3, 8, 6, 2};
+        System.out.println("排序前：" + Arrays.toString(arr));
+        
+        bubble(arr);
+        
+        System.out.println("排序后：" + Arrays.toString(arr));
+    }
+}
+```
+
