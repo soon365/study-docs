@@ -248,7 +248,7 @@ System.out.println("name =" + name +", age = " + age);
   4. 负二进制转换为十进制的方式
      - 先减一再按位取反，然后合并为十进制整数后添加负号
 
-## 运算符与分支结构
+## 运算符
 
 ### 运算符
 
@@ -510,4 +510,216 @@ public class AnLi3
 
 
 
-### 条件运算符
+### 条件运算符(三目运算符)
+
+条件表达式？表达式1：表达式2⇒判断条件表达式是否成立⇒若成立，则执行表达式1；⇒若不成立，则执行表达式2；
+
+```java
+/*
+    优化判断整数是否为负数
+*/
+import java.util.Scanner;
+public class AnLi2
+{
+    public static void main(String[] args)
+    {
+    System.out.println("请输入一个整数");
+    Scanner sc =new Scanner(System.in);
+    int shu = sc.nextInt();
+    System.out.println("-----------------------------");
+    //使用关系运算符进行比较并打印结果
+    System.out.println(shu > 0);
+    System.out.println(shu > 0 ? "正数":"负数");
+    }
+}
+```
+
+```java
+/*
+    优化判断是否是三位数
+*/
+import java.util.Scanner;
+public class AnLi3
+{
+    public static void main(String[] args)
+    {
+    int b1 = 99;
+    int b2 = 1000;
+    System.out.println("请输入一个三位正整数：");
+    Scanner sc =new Scanner(System.in);
+    int shu =sc.nextInt();
+    System.out.println("-----------------------------");
+    System.out.println((b1 < shu && shu < b2) ? "是三位数" : "不是三位数");
+    }
+}
+```
+
+```java
+/*
+    编程两个中找出最大值
+*/
+import java.util.Scanner;
+public class AnLi4
+{
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        Scanner sca = new Scanner(System.in);
+        System.out.println("请输入两个整数：");
+        int shu1 = sc.nextInt();
+        int shu2 = sca.nextInt();
+        System.out.println((shu1 < shu2) ? shu2 + "最大" : shu1 + "最大");
+    }
+}
+```
+
+### 赋值运算符
+
+1. 简单赋值
+
+   =表示赋值运算符，主要用于将=右边的数据赋值给=左边的变量，覆盖原来的数值。
+
+   ia == 2；判断ia的数值是否等于2
+
+   2 == ia；判断2的数值是否等于ia(推荐)
+
+   
+
+2. 复合赋值
+
+   +=、-=、*=、/=  ……
+
+```java
+/*
+    编程实现赋值运算符的使用
+*/
+public class FuZhi
+{
+   public static void main(String[] args)
+   {
+    int ia =3;
+    System.out.println("ia = " + ia);//ia = 3
+    System.out.println("-----------------------");
+    //使用简单赋值运算符
+    ia = 5;
+    System.out.println("ia = " + ia);//ia = 5
+    System.out.println("-----------------------");
+    //使用简复合赋值运算符
+    ia += 2;
+    System.out.println("ia = " + ia);//ia = 7
+   }
+}
+
+```
+
+### 移位运算符
+
+1. <<表示左移运算符，用于将数据的二进制位向左移动，右边使用0补充
+2. .>>表示右移运算符，用于将数据的二进制位向右移动，左边使用符号位补充
+3. .>>>表示逻辑右移运算符，用于将数据的二进制位向右移动，左边使用0补充
+
+```java
+/*
+    编程实现移位运算符的使用
+*/
+public class YiWei
+{
+    public static void main(String[] args)
+    {
+    byte b1 = 10;
+    System.out.println("b1 = " + b1);
+    //表示将b1数值的二进制位向左移动两位，右边使用0补充
+    //10 ⇒ 0000 1010 ⇒ 0010 1000 
+    System.out.println(b1 << 2);  //40
+    //10 ⇒ 0000 1010 ⇒ 0000 1000
+    System.out.println(b1 >> 2);  //2
+    //10 ⇒ 0000 1010 ⇒ 0000 1000
+    System.out.println(b1 >>> 2); //2
+
+    }
+}
+```
+
+### 位运算符
+
+1. & 表示按位与运算符，就是按照二进制位进行与运算，同一为一，一零为零（一-真，零-假）。
+2. |表示按位或运算符，就是按照二进制位进行或运算，一一为一，同零为零。
+3. ~表示按位非运算符，就是按照二进制位进行取反，一为零，零为一。
+4. ^表示按位非运算符，就是按照二进制位进行异或运算，相同为零，不同为一。
+
+```java
+/*
+   编程实现按位运算符的使用
+*/
+public class LuoJi
+{
+    public static void main(String[] args)
+    {
+    byte b1 = 11;
+    byte b2 = 13;
+    System.out.println("b1 = " + b1);//b1=11
+    System.out.println("b2 = " + b2);//b2=13
+    System.out.println("----------------------------");
+    //实现按位运算符的使用
+    //11 ⇒ 0000 1011 
+    //13 ⇒ 0000 1101
+    System.out.println(b1 & b2);   //0000 1001⇒ 9
+    System.out.println(b1 | b2);   //0000 1111⇒ 15
+    System.out.println(b1 ^ b2);   //0000 0110⇒ 6
+    System.out.println(~b1);       //0000 1011 ⇒ 1111 0100 ⇒ 1111 0011 ⇒ 0000 1100 ⇒ 12 ⇒ -12
+    }
+}
+```
+
+
+
+### 运算符的优先级
+
+|          运算符          |  结合性  |
+| :----------------------: | :------: |
+|          []、()          | 从左向右 |
+|    !、~、++、--、+、-    | 从右向左 |
+|         *、/、%          | 从左向右 |
+|           +、-           | 从左向右 |
+|       <<、>>、>>>        | 从左向右 |
+| <、<=、>、>=、instanceof | 从左向右 |
+|          ==、!=          | 从左向右 |
+|            &             | 从左向右 |
+|            ^             | 从左向右 |
+|            \|            | 从左向右 |
+|            &&            | 从左向右 |
+|           \|\|           | 从左向右 |
+|            ?:            | 从右向左 |
+|            =             | 从右向左 |
+
+## 分支结构
+
+基本概念
+
+1. 在某些特殊场合中需要进行判断并作出选择时，就需要使用分支结构。
+
+if分支结构
+
+1. 语法格式
+
+   if(条件表达式)
+
+   {
+
+   语句块;
+
+   }
+
+2. 执行流程
+
+   判断条件表达式是否成立
+
+   ⇒若成立，则执行语句块;
+
+   ⇒若不成立，则跳过语句块;
+
+3. 
+
+   
+
+   
