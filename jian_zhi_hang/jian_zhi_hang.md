@@ -698,7 +698,7 @@ public class LuoJi
 
 1. 在某些特殊场合中需要进行判断并作出选择时，就需要使用分支结构。
 
-if分支结构
+### if分支结构
 
 1. 语法格式
 
@@ -718,8 +718,215 @@ if分支结构
 
    ⇒若不成立，则跳过语句块;
 
-3. 
+```java
+/*
+    编程实现if分支结构的使用
+*/
+import java.util.Scanner;
+public class If
+{
+    public static void main(String[] args)
+    {
+    //1.提示用户输入年龄信息并使用变量记录
+    System.out.println("请输入你的年龄：");
+    Scanner sc = new Scanner(System.in);
+    int age = sc.nextInt();
+    if(age >= 18)
+    {
+        System.out.println("你已满18岁，可以开心的浏览起了上网！");
+    }
+    System.out.println("无奈的回家了！");
+    }
+}
+```
 
-   
 
-   
+
+### if-else分支结构
+
+1. 语法格式
+
+   if(条件表达式)
+
+   {
+
+   语句块1;
+
+   }
+
+   else
+
+   {
+
+   语句块2;
+
+   }
+
+2. 执行流程
+
+   判断条件表达式是否成立
+
+   ⇒若成立，则执行语句块1;
+
+   ⇒若不成立(否则)，执行语句块2;
+
+```java
+/*
+    编程实现if-else分支结构的使用
+*/
+import java.util.Scanner;
+public class IfElse
+{
+    public static void main(String[] args)
+    {
+    //1.提示用户输入考试成绩并使用变量记录
+    System.out.println("请输入考试成绩：");
+    Scanner sc = new Scanner(System.in);
+    int cj = sc.nextInt();
+    //2.使用if-else分支结构判断是否及格并给出对应的提示
+    if(cj > 60)
+    {
+    System.out.println("恭喜你考试通过了!");
+    }
+    else
+    {
+    System.out.println("恭喜你下学期来补考吧!");
+    }
+    //3.打印一句经典语录
+    System.out.println("世界上最遥远的距离不是生与死而是你在if我在else，看似相交却又永远分离!");
+    }
+}
+```
+
+### if-else if-else分支结构
+
+1. 语法格式
+
+   if(条件表达式)
+
+   {
+
+   语句块1;
+
+   }
+
+   else if
+
+   {
+
+   语句块2;
+
+   }
+
+   ······
+
+   else
+
+   {
+
+   语句块n；
+
+   }
+
+2. 执行流程
+
+   判断条件表达式1是否成立
+
+   ⇒若成立，则执行语句块1;
+
+   ⇒若不成立，则判断条件表达式2是否成立;
+
+   ​       ⇒若成立，则执行语句块2;
+
+   ​       ⇒若不成立，则执行语句块n;
+
+```java
+/*
+    编程实现if-else分支结构的使用
+*/
+import java.util.Scanner;
+public class IfElseIfElse
+{
+    public static void main(String[] args)
+    {
+    //1.提示用户输入身份信息并使用变量记录
+    System.out.println("请输入身份信息：");
+    Scanner sc = new Scanner(System.in);
+    String str = sc.next();
+    //2.使用if-else if-else分支结构判断身份信息并给出对应的提示
+    //由于String类型是引用数据类型，因此使用equals方法进行判断
+    if("军人".equals(str))
+    {
+        System.out.println("请免费乘车!");
+    }
+    else if("学生".equals(str))
+    {
+        System.out.println("请购买半价票!");
+    }
+    else if("老年人".equals(str))
+    {
+        System.out.println("请购买七五价票!");
+    }
+    else 
+    {
+        System.out.println("全价票等着你!");
+    }
+    //3.打印一句话
+    System.out.println("坐上了火车去拉萨，去看那美丽的布达拉!");
+    }
+}
+```
+
+## 循环结构
+
+基本概念
+
+1. 在某些特殊场合中需要重复执行一段代码时借助循环结构加以处理。
+
+### for循环
+
+1. 语法格式
+
+   for(初始化表达式；条件表达式；修改初始值表达式)
+
+   {
+
+   循环体;
+
+   }
+
+2. 执行流程
+
+   执行初始表达式⇒判断条件表达式是否成立
+
+   ⇒若成立，则执行循环体⇒修改初始值表达式⇒判断条件表达式是否成立⇒若不成立，则循环结束
+
+
+```java
+/*
+    编程实现for循环结构的使用
+*/
+import java.util.Scanner;
+public class For
+{
+    public static void main(String[] args) throws Exception
+    {
+        System.out.println("请输入你的密码：");
+        Scanner sc = new Scanner(System.in);
+        int mm = sc.nextInt();
+        for(int qian = 500; qian >= 100; qian -= 100)
+        { 
+            System.out.println("当前账户余额：" + qian + "正在出钞，请稍后...");
+            //睡眠2.5秒的过程
+            Thread.sleep(2500);
+            System.out.println("请取走你的钞票！\n\n\n");
+        }
+        System.out.println("现在可以尽情地挥霍了...");
+    }
+}
+```
+
+```
+
+```
+
