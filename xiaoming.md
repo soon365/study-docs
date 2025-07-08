@@ -2465,3 +2465,460 @@ public class demo15 {
 
 目前主流的操作系统都支持多进程，为了使得操作系统能够同时执行多个任务.但进程是重量级的，新建进程对系统的资源消耗比较大，因此进程的数量比较局限。
 
+线程是进程内部的程序流，也就是操作系统中支持多进程，而每个进程的内部又可以支持多线程，线程是轻量级的，新建线程会共享所在进程的系统资源，因此以后的开发中都采用多线程技术。
+
+多线程技术采用时间片轮转法实现并发执行，所谓并发就是指宏观并行微观串行的技
+
+**线程的创建:**
+
+​	java.lang.Thread类用于描述线程.Java 虚拟机允许应用程序并发地运行多个执行线程,而线程的创建和启动方式如下:
+
+​	(1) 自定义类继承Thread类并重写方法，创建该类的实例调用start方法
+
+​	(2) 自定义类实现Runnable接口并重写run方法，创建该类的实例作为实参来构造Thread类型的对象，然后使用Thread类型的对象调用	start方法。
+
+**相关方法的解析:**
+
+Thread ()	-使用无参方式构造对象
+
+Thread(String name)	-根据参数指定的名称来构造对象。
+
+Thread(Runnable target)	-根据参数指定的接口引用来构造对象。
+
+Thread Runnable target，String name)	-根据参数指定的引用和名称构造对象
+
+void run()	-若使用Runnable类型的引用构造出来的对象调用该方法，则最终调用引用所指向对象的run方法，否则调用该方法啥也不做。
+
+void start()	-用于启动线程，Java虚拟机会自动调用该线程的run方法。
+
+**原理分析:**
+
+a. 执行main方法的线程叫做主线程，执行run方法的线程叫做子线程。
+
+b. main方法是程序的入口，最开始只有主线程来依次执行main方法中的代码，当start方法调用成功后，线程的个数瞬间由1个变成了2个，其中子线程去执行run方法,主线程继续执行main方法的代码，两个线程各自独立运行互不影响。
+
+c.  当run方法执行完毕后子线程结束，当main方法执行完毕后主线程结束，但两个线程谁先执行没有明确的规定，取决于操作系统的调度算法。
+
+**注意:**
+
+线程创建和启动的方式一相对来说代码简单，但Java语言中只支持单继承，若该类继承Thread类后则无法继承其它类;而方式二相对来说代码复杂，但不影响该类继承其它类以及实现其它接口，因此以后开发中推荐方式
+
+#### 线程的编号和名称
+
+```java
+package day4;
+
+public class demo17 {
+    public static void main(String[] args) {
+        // 获取当前正在执行的线程对象
+        Thread t = Thread.currentThread();
+
+        // 获取线程编号
+        long id = t.getId();
+        System.out.println("线程编号: " + id);
+
+        // 获取线程名称
+        String name = t.getName();
+        System.out.println("线程名称: " + name);
+
+        // 设置线程名称
+        t.setName("主线程");
+        System.out.println("修改后的线程名称: " + t.getName());
+    }
+}
+```
+
+**线程的生命周期:**
+
+![](.\image\线程的生命周期.png)
+
+#### 线程的同步机制
+
+**基本概念:**
+
+当多个线程同时访问同种共享资源时，可能会造成数据的覆盖等不一致性问题，此时就需要进行线程之间的通信和协调，该机制就叫线程的同步机制。
+
+**解决方案:**
+
+由程序结果可知:当两个线程同时进运行时，导致最终的状态不合理.
+
+引发原因: 线程一还没有执行完毕操作，此时线程二已经开始操作.
+
+方案:让两个线程的并发操作改为串行操作即可，也就是依次执行操作.
+
+方案的缺点:若依次启动多个线程则导致多线程的意义不复存在。
+
+**实现方法:**
+
+在java语言中使用synchronized关键字来实现同步/对象锁机制，来保证线程执行该段代码时的原子性(要么不执行，要么就执行完整)，具体方式如下:
+
+(1) 使用同步语句块的方式来锁定部分代码:	
+
+synchronized(任意类型的引用){
+
+​	编写需要锁定的代码;
+
+}
+
+(2) 使用同步方法的方式来锁定所有代码;
+
+**原理分析:**
+
+​	当多个线程调用start方法后同时去抢占共享资源，由于同步锁的存在导致只有一个线程能够抢到共享资源并进行加锁处理，其它没有抢到共享资源的线程进入阻塞状态，当该线程执行完毕所有锁定的代码后自动释放同步锁，此时阻塞状态的所有线程继续抢占共享资源，抢不到的线程再次回到阻塞状态。
+
+使用synchronized保证线程同步应当注意:
+
+1 多个需要同步的线程在访问该同步块时，看到的应该是同一个所对象引用。
+
+2 在使用同步块时应当尽量减少同步范围以提高并发的执行效率。
+
+**死锁的概念**
+
+死锁（Deadlock）是计算机科学和操作系统中的一个重要概念，指在多任务或多线程环境中，两个或多个进程（或线程）因争夺资源而陷入的一种相互等待的僵局状态，导致所有相关进程都无法继续执行下去。
+
+在以后的开发中尽量少使用同步代码块的嵌套结构!
+
+### 网络编程的常识
+
+#### 七层网络模型
+
+IS0(国际标准委员会组织)将数据的传递从逻辑上划分为以下七层:
+应用层、表示层、会话层、传输层、网络层、数据链路层、物理层
+
+​	当发送数据时，需要对发送的内容按照上述七层模型进行层层加包再发送出去;
+
+​	当接收数据时，需要对接受的内容按照上述七层模型相反的次序层层拆包再解析出来
+
+![](.\image\OSI七层模型.png)
+
+#### IP地址
+
+如:
+
+​	192.168.1.1	- 是绝大多数路由器的登录地址，进行账号密码的配置以及Mac地址过滤
+
+​	IP地址-是互联网中的唯一标识，用于定位到具体某一台设备
+
+IP地址本质上是由32位二进制组成的整数，叫做IPv4，当然也有128位二进制组成的整数，叫做IPv6，目前主流的还是IPv4.
+
+日常生活中采用点分十进制表示法进行IP地址的描述，也就是将每个字节的二进制转换为一个十进制整数，不同的十进制整数之间采用小数点隔开。
+
+#### 端口号
+
+​	IP地址-可以定位到具体某一台设备
+
+​	端口号-可以定位到具体某一个进程
+
+​	网络编程需要提供:IP地址+端口号
+
+​	端口号本质上是由16位二进制组成的整数，表示的范围:0 ~65535,其中0 ~1024间的端口号通常被系统占用，因此开发中从1025开始使用.
+
+![](.\image\端口号的描述.png)
+
+#### 基于tcp协议的编程模型
+
+**编程模型**
+
+服务器:
+
+​	(1)	创建ServerSocket类型的对象并提供端口号:
+
+​	(2)	等待客户端的连接请求，调用accept方法;
+
+​	(3)	使用输入输出流进行通信;
+
+​	(4)	关闭Socket;
+
+```java
+package day4;
+import java.io.*;
+import java.net.*;
+
+public class ServerDemo {
+    public static void main(String[] args) throws Exception {
+        // 1. 创建ServerSocket对象并提供端口号
+        ServerSocket serverSocket = new ServerSocket(8888);
+        System.out.println("服务器已启动，等待客户端连接...");
+
+        // 2. 等待客户端的连接请求，调用accept方法
+        Socket socket = serverSocket.accept();
+        System.out.println("客户端已连接: " + socket.getInetAddress());
+
+        // 3. 使用输入输出流进行通信
+        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+        String clientMsg = in.readLine();
+        System.out.println("收到客户端消息: " + clientMsg);
+        out.println("服务器已收到: " + clientMsg);
+
+        // 4. 关闭Socket
+        in.close();
+        out.close();
+        socket.close();
+        serverSocket.close();
+        System.out.println("服务器已关闭。");
+    }
+} 
+```
+
+客户端:
+
+​	(1)	创建Socket类型的对象并提供服务器的IP地址和端口号;	
+
+​	(2)	使用输入输出流进行通信;
+
+​	(3)	关闭Socket;
+
+```java
+package day4;
+import java.io.*;
+import java.net.*;
+
+public class ClientDemo {
+    public static void main(String[] args) throws Exception {
+        // 1. 创建Socket对象并提供服务器的IP地址和端口号
+        Socket socket = new Socket("127.0.0.1", 8888);
+        System.out.println("已连接到服务器");
+
+        // 2. 使用输入输出流进行通信
+        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+        out.println("你好，服务器！");
+        String serverMsg = in.readLine();
+        System.out.println("收到服务器回复: " + serverMsg);
+
+        // 3. 关闭Socket
+        in.close();
+        out.close();
+        socket.close();
+        System.out.println("客户端已关闭。");
+    }
+} 
+```
+
+***
+
+### 常用的设计原则
+
+**软件开发的流程:**
+
+需求分析文档=>概要设计文档=>详细设计=>文档编码和测试=>安装和调试=>维护和升级
+
+### 常用的设计原则
+
+开闭原则 -对扩展开放，对修改关闭.dddd
+
+里氏代换原则	 - 任何父类可以出现的地方，子类一定可以.
+
+​							- 子类 is a 父类.
+
+​							- 在以后的开发中多使用继承.
+
+依赖倒转原则	 - 尽量多依赖于抽象类和接口，而不是具体实现类.
+
+​							- 在以后的开发中多使用抽象类和接口，对子类具有强制性和规范性.
+
+接口隔离原则 	- 尽量依赖于小接口而不是大接口，避免接口的污染.
+
+​							- 可以降低耦合度.
+
+​							- 耦合主要指一个模块与其它模块之间的关联度.
+
+迪米特法则(最少知道原则)	- 一个实体应当尽量少于其它实体之间发生相互作用
+
+​												- 低耦合，高内聚
+
+​												- 高内聚就是指将一个实体应当将该实体应该拥有的功能尽量聚集在该实体内部
+
+合成复用原则 	- 尽量多使用合成的方式，而不是继承的方式。
+
+### 常用的设计模式
+
+**基本概念**
+
+设计模式就是一种用于固定场合的固定套路，是多年编程经验的总结。
+
+**常用的设计模式**
+
+单例设计模式、模板设计模式、工厂方法模式、抽象工厂模式。
+
+```java
+package day5;
+
+// 产品接口
+interface Product {
+    void show();
+}
+
+// 具体产品A
+class ProductA implements Product {
+    public void show() {
+        System.out.println("生产了产品A");
+    }
+}
+
+// 具体产品B
+class ProductB implements Product {
+    public void show() {
+        System.out.println("生产了产品B");
+    }
+}
+
+// 工厂类
+class ProductFactory {
+    public Product createProduct(String type) {
+        if ("A".equalsIgnoreCase(type)) {
+            return new ProductA();
+        } else if ("B".equalsIgnoreCase(type)) {
+            return new ProductB();
+        } else {
+            throw new IllegalArgumentException("未知的产品类型: " + type);
+        }
+    }
+}
+
+// 测试类
+public class SimpleFactoryDemo {
+    public static void main(String[] args) {
+        ProductFactory factory = new ProductFactory();
+        Product p1 = factory.createProduct("A");
+        p1.show();
+        Product p2 = factory.createProduct("B");
+        p2.show();
+    }
+} 
+```
+
+***
+
+### 常用的查找算法
+
+#### 线性/顺序查找算法
+
+```java
+package day5;
+
+public class LinearSearchDemo {
+    /**
+     * 线性查找算法：在数组中查找目标值，返回其下标，未找到返回-1。
+     * @param arr 待查找的数组
+     * @param target 目标值
+     * @return 目标值在数组中的下标，未找到返回-1
+     */
+    public static int linearSearch(int[] arr, int target) {
+        // 从头到尾依次遍历数组
+        for (int i = 0; i < arr.length; i++) {
+            // 如果找到目标值，返回其下标
+            if (arr[i] == target) {
+                return i;
+            }
+        }
+        // 遍历结束未找到，返回-1
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {3, 8, 2, 7, 5, 9};
+        int target = 7;
+        int index = linearSearch(nums, target);
+        if (index != -1) {
+            System.out.println("目标值 " + target + " 在数组中的下标为: " + index);
+        } else {
+            System.out.println("数组中未找到目标值 " + target);
+        }
+    }
+} 
+```
+
+#### 二分查找算法
+
+```java
+package day5;
+
+public class BinarySearchDemo {
+    /**
+     * 二分查找算法：在有序数组中查找目标值，返回其下标，未找到返回-1。
+     * @param arr 有序数组
+     * @param target 目标值
+     * @return 目标值在数组中的下标，未找到返回-1
+     */
+    public static int binarySearch(int[] arr, int target) {
+        int left = 0;
+        int right = arr.length - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2; // 防止溢出
+            if (arr[mid] == target) {
+                return mid;
+            } else if (arr[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {2, 3, 5, 7, 8, 9}; // 必须有序
+        int target = 7;
+        int index = binarySearch(nums, target);
+        if (index != -1) {
+            System.out.println("目标值 " + target + " 在数组中的下标为: " + index);
+        } else {
+            System.out.println("数组中未找到目标值 " + target);
+        }
+    }
+} 
+```
+
+#### 冒泡排序算法
+
+```java
+package day5;
+
+public class BubbleSortDemo {
+    /**
+     * 冒泡排序算法：对数组进行升序排序。
+     * @param arr 待排序的数组
+     */
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length;
+        // 外层循环控制趟数
+        for (int i = 0; i < n - 1; i++) {
+            boolean swapped = false; // 优化：标记本趟是否发生交换
+            // 内层循环进行相邻元素两两比较和交换
+            for (int j = 0; j < n - 1 - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    // 交换arr[j]和arr[j+1]
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    swapped = true; // 发生了交换
+                }
+            }
+            // 如果本趟没有发生交换，说明数组已经有序，提前结束
+            if (!swapped) {
+                break;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {5, 2, 9, 3, 7, 1};
+        System.out.print("排序前: ");
+        for (int num : nums) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+
+        bubbleSort(nums);
+
+        System.out.print("排序后: ");
+        for (int num : nums) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+} 
+```
+
