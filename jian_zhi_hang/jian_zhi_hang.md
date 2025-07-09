@@ -1,5 +1,7 @@
 
 
+
+
 # 计算机的体系结构
 
 计算机由硬件和软件两个部分组成。
@@ -926,7 +928,306 @@ public class For
 }
 ```
 
-```
+```java
+/*
+    编程使用for循环实现10-1的整数的打印
+*/
+public class AnLi6
+{
+    public static void main(String[] args)
+    {   //使用for循环打印10~1之间的整数
+        for(int shu = 10; shu > 0; shu--)
+        {
+            System.out.println("shu = " + shu);
+        }
+        System.out.println("--------------------");
+        //使用for循环打印1~10之间的所以整数
+        for(int shu = 1; shu <= 10; shu++)
+        {
+            System.out.println("shu = " + shu);
+        }
+        System.out.println("--------------------");
+        //3.使用for循环打印1~100之间的所有奇数
+        //方式一：使用奇数的概念，所谓奇数就是不能被二整除的数
+        for(int i = 1; i < 100; i++)
+        {
+            if(i%2 != 0)
+            {
+                System.out.println("i = " + i);
+            }
+        }
+        System.out.println("--------------------");
+        //方式二：使用等差数列的思想打印
+        for(int i = 1; i <= 100; i += 2)
+        {
+            System.out.println("i = " + i);
+        }
+        System.out.println("--------------------");
+        //方式三：使用通项公式打印
+        for(int i = 1; i <= 50; i++)
+        {
+            System.out.println("i = " + (2*i-i));
+        }
+    }
+}
 
 ```
+
+```java
+/*
+    编程使用for循环实现1~100之间的累加和并打印
+*/
+public class AnLi7
+{
+    public static void main(String[] args)
+    {
+        //声明局部变量记录累加的结果
+        int team = 0;
+        for(int i = 1; i <= 100; i++)
+        {
+            team += i;
+        }
+        System.out.println("最终的累加结果是：" + team);
+    }
+}
+```
+
+```java
+/*
+    编程使用for循环实现1~100之间的累加和并打印
+*/
+public class AnLi7
+{
+    public static void main(String[] args)
+    {
+        //声明局部变量记录累加的结果
+        int team = 0;
+        for(int i = 1; i <= 100; i++)
+        {
+            team += i;
+        }
+        System.out.println("最终的累加结果是：" + team);
+    }
+}
+```
+
+```java
+/*
+    编程使用for循环实现找出三位数中所有水仙花数并打印
+*/
+public class shuixianhua
+{
+    public static void main(String[] args)
+    {
+        int bai = 0;
+        int shi = 0;
+        int ge  = 0;
+        for(int i = 100; i <= 999; i++)
+        {
+            bai = i / 100;
+            shi = i / 10 % 10;
+            ge  = i % 10;
+            if(i == (bai * bai * bai) + (shi * shi * shi) + (ge * ge * ge))
+            {
+                System.out.println(i);
+            }
+        }
+    }
+}
+```
+
+### 双重循环
+
+1. 语法格式
+
+   for(初始化表达式1；条件表达式2；修改初始值表达式3)
+
+   {
+
+   ​	for(初始化表达式4；条件表达式5；修改初始值表达式6)
+
+   ​	{
+
+   ​		循环体;
+
+   ​	}
+
+   }
+
+2. 执行流程
+
+   执行初始表达式1⇒判断条件表达式2是否成立
+
+   ⇒若成立，则执行表达式4⇒判断表达式5是否成立
+
+   ​	⇒若成立，则执行循环体⇒执行表达式6⇒判断表达式5是否成立
+
+   ​	⇒若不成立，则内层循环结束⇒执行表达式3⇒判断表达式2是否成立
+
+   ⇒若不成立，则外层循环结束
+
+```java
+/*
+    编程实现双重for循环的使用
+*/
+public class ForFor
+{
+    public static void main(String[] args)
+    {
+        //1.使用for循环打印5行字符串内容“厉害了我的哥”
+        for(int i = 1; i <= 5; i++)
+        {
+            System.out.println("厉害了我的哥!");
+        }
+        System.out.println("-------------------");
+        //2.使用for循环打印5列字符串内容“厉害了我的哥”
+        for(int j = 1; j <= 5; j++)
+        {
+            //打印完毕不换行
+            System.out.print("厉害了我的哥!");
+        }
+        //专门用于换行
+        System.out.println();
+        System.out.println("-------------------");
+        //3.使用for循环打印5行5列字符串内容“厉害了我的哥”
+        for(int i = 1; i <= 5; i++)
+        {
+            for(int j = 1; j <= 5; j++)
+            {
+                //打印完毕不换行
+                System.out.print("厉害了我的哥!   ");
+            }
+            //专门用于换行
+            System.out.println();
+        }
+    }
+
+}
+```
+
+```java
+/*
+    编程练习双重for循环的使用
+*/
+public class forfor2
+{
+    public static void main(String[] args)
+    {
+
+        for(int n = 1; n <= 5; n++)
+        {
+            for(int m = 1; m <= 5; m++)
+            {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        System.out.println("-------------------");   
+        for(int x = 1; x <= 5; x++)
+        {
+            for(int y = 1; y <= x; y++)
+            {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        System.out.println("-------------------");
+        for(int q = 1; q <= 5; q++)
+        {
+            for(int p = 1; p <= 6 - q ; p++)
+            {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        System.out.println("-------------------");
+        for(int i = 1; i <= 5; i++)
+        {
+             for(int u = 1; u <= 5-i; u++)
+        	{   
+                System.out.print(" ");
+            for(int j = 1; j <= 2 * i - 1 ; j++)
+            {
+                System.out.print("*");
+            }
+            System.out.println();
+        	}
+        }
+    }
+}
+```
+
+> [!IMPORTANT]
+>
+> a.外层循环变量动一下，则内层循环变量跑一圈；
+>
+> b.当需要打印多行多列的数据内容时，可以使用双重for循环；
+
+### break关键字与continue关键字
+
+break用于退出当前语句块，break用在循环体中用于退出循环。
+
+continue语句用在循环体中，用于结束本次循环而开始下一次循环。
+
+for( ; ; ) - 这种没有循环条件的循环叫做无限循环，俗称“死循环”。
+
+```java
+/*
+    编程实现break关键字和continue关键字的使用
+*/
+public class BreakContinue
+{
+    public static void main(String[] args)
+    {
+        for(int i =1; i <= 20; i++)
+        {
+            if(0 == i % 5)
+            {
+                continue;
+            }
+            if(18 == i)
+            {
+                break;
+            }
+            System.out.println("i = " + i);
+        }
+    }
+}
+```
+
+```java
+/*
+    编程使用for循环来模拟聊天的过程
+*/
+import java.util.Scanner;
+public class ForChat
+{
+    public static void main(String[] args)
+    {   //声明一个boolean类型的变量作为标志位
+        boolean flag = true;
+        for( ; ;)
+        {
+            //1.提示用户输入聊天的内容并使用变量记录
+            System.out.println("请" +(flag?"洪飞":"建辉") + "输入要发送的内容：");
+            //2.判断用户输入的内容是否为“bye”，若是则聊天结束
+            Scanner sc =new Scanner(System.in);
+            String zi = sc.next();
+            if("bye".equals(zi))
+            {
+                System.out.println("聊天结束!");
+                break;
+            }
+            //3.若不是则打印用户输入的内容
+            else
+            {
+                System.out.println((flag?"洪飞说：":"建辉说：") + zi);
+                flag = !flag;
+            }        
+        }
+        
+    }
+}
+```
+
+
 
