@@ -2513,3 +2513,407 @@ public class AnonymousThreadDemo {
     }
 }
 ```
+
+- 同步方法实现多线程
+
+```java
+class Account {
+    private int balance = 1000; // 初始余额
+
+    // 同步方法：取款
+    public synchronized void withdraw(int amount) {
+        if (balance >= amount) {
+            System.out.println(Thread.currentThread().getName() + " 正在取款: " + amount);
+            try {
+                Thread.sleep(100); // 模拟取款耗时操作
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            balance -= amount;
+            System.out.println(Thread.currentThread().getName() + " 取款成功，当前余额: " + balance);
+        } else {
+            System.out.println(Thread.currentThread().getName() + " 余额不足，取款失败");
+        }
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+}
+class WithdrawThread extends Thread {
+    private Account account;
+    private int amount;
+
+    public WithdrawThread(Account account, int amount, String name) {
+        super(name);
+        this.account = account;
+        this.amount = amount;
+    }
+
+    @Override
+    public void run() {
+        account.withdraw(amount);
+    }
+}
+
+public class SyncMethodDemo {
+    public static void main(String[] args) {
+        Account account = new Account();
+
+        // 创建多个线程模拟并发取款
+        WithdrawThread t1 = new WithdrawThread(account, 500, "线程A");
+        WithdrawThread t2 = new WithdrawThread(account, 300, "线程B");
+        WithdrawThread t3 = new WithdrawThread(account, 200, "线程C");
+
+        // 启动线程
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+```
+
+## 网络
+
+- 七层网络模型
+
+  - IS0(国际标准委员会组织)将数据的传递从逻辑上划分为以下七层:
+    - 应用层、表示层、会话层、传输层、网络层、数据链路层、物理层
+
+  - 当发送数据时，需要对发送的内容按照上述七层模型进行层层加包再发送出去;
+  - 当发送数据时，需要对接受的内容按照上述七层模型相反的次序层层拆包再解析出来
+
+- IP地址
+  - 192.168.1.1 - 是绝大多数路由器的登录地址，进行账号密码的配置以及Mac地址过滤
+  - IP地址本质上是由32位二进制组成的整数，叫做IPv4，当然也有128位二进制组成的整数，叫做IPv6，目前主流的还是IPv4
+  - 日常生活中采用点分十进制表示法进行IP地址的描述，也就是将每个字节的二进制转换为一个十进制整数，不同的十进制整数之间采用小数点隔开。
+
+- 端口号
+  - IP地址 - 可以定位到具体某一台设备。
+  - 端口号 - 可以定位到具体某一个进程
+  - 网络编程需要提供:IP地址+端口号。
+  - 端口号本质上是由16位二进制组成的整数，表示的范围:0~65535,其中0~1024之间的端口号通常被系统占用，因此开发中从1025开始使用。
+
+## 基于tcp协议
+
+- 编程模型
+
+```java
+public class TcpClient {
+    public static void main(String[] args) {
+        String hostname = "localhost"; // 服务器地址
+        int port = 12345; // 端口号
+
+        try (Socket socket = new Socket(hostname, port)) {
+            System.out.println("已连接到服务器");
+
+            // 发送消息给服务器
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            out.println("你好，服务器！");
+
+            // 关闭资源
+            out.close();
+        } catch (UnknownHostException e) {
+            System.err.println("未知主机: " + hostname);
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.err.println("IO异常");
+            e.printStackTrace();
+        }
+    }
+}
+public class TcpServer {
+    public static void main(String[] args) {
+        int port = 12345; // 端口号
+
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
+            System.out.println("服务器已启动，等待客户端连接...");
+
+            // 等待客户端连接
+            Socket clientSocket = serverSocket.accept();
+            System.out.println("客户端已连接");
+
+            // 获取输入流
+            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
+            // 读取客户端发送的消息
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) {
+                System.out.println("收到客户端消息: " + inputLine);
+            }
+
+            // 关闭资源
+            in.close();
+            clientSocket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+## 常用的设计原则
+
+- 软件开发的流程
+  - 维护和升级=>需求分析文档=>概要设计文档=>详细设计文档>编码和测试=>安装和调试
+
+- 常用的设计原则
+  - 开闭原则 - 对扩展开放，对修改关闭。
+  - 就是用private和public
+  - 里氏替换原则
+  - 依赖倒转原则
+
+- 常用的设计模式
+
+  - 基本原则
+    - 设计模式就是一种用于固定场合的固定套路，是多年编程经验的总结。
+
+  - 常用的设计模式
+    - 单例设计模式、模板设计模式、工厂方法模式、抽象工厂模式。
+
+- 普通工厂
+
+```java
+interface Animal {
+    void speak();
+}
+class Dog implements Animal {
+    public void speak() {
+        System.out.println("汪汪！");
+    }
+}
+
+class Cat implements Animal {
+    public void speak() {
+        System.out.println("喵喵！");
+    }
+}
+
+class AnimalFactory {
+    public Animal getAnimal(String type) {
+        if ("dog".equalsIgnoreCase(type)) {
+            return new Dog();
+        } else if ("cat".equalsIgnoreCase(type)) {
+            return new Cat();
+        }
+        return null;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        AnimalFactory factory = new AnimalFactory();
+
+        Animal dog = factory.getAnimal("dog");
+        dog.speak(); // 输出: 汪汪！
+
+        Animal cat = factory.getAnimal("cat");
+        cat.speak(); // 输出: 喵喵！
+    }
+}
+```
+
+- 抽象工厂
+
+```java
+// 动物接口
+interface Animal {
+    void speak();
+}
+
+// 具体类
+class Dog implements Animal {
+    public void speak() { System.out.println("汪汪！"); }
+}
+
+class Cat implements Animal {
+    public void speak() { System.out.println("喵喵！"); }
+}
+
+// 食物接口
+interface Food {
+    void feed();
+}
+
+class DogFood implements Food {
+    public void feed() { System.out.println("给狗喂食"); }
+}
+
+class CatFood implements Food {
+    public void feed() { System.out.println("给猫喂食"); }
+}
+
+// 抽象工厂
+interface AnimalFactory {
+    Animal createAnimal();
+    Food createFood();
+}
+
+// 具体工厂1 - 狗工厂
+class DogFactory implements AnimalFactory {
+    public Animal createAnimal() { return new Dog(); }
+    public Food createFood() { return new DogFood(); }
+}
+
+// 具体工厂2 - 猫工厂
+class CatFactory implements AnimalFactory {
+    public Animal createAnimal() { return new Cat(); }
+    public Food createFood() { return new CatFood(); }
+}
+public class ZooApp {
+    public static void main(String[] args) {
+        AnimalFactory factory;
+
+        // 使用Dog工厂
+        factory = new DogFactory();
+        Animal dog = factory.createAnimal();
+        Food dogFood = factory.createFood();
+        dog.speak();      // 输出: 汪汪！
+        dogFood.feed();   // 输出: 给狗喂食
+
+        // 使用Cat工厂
+        factory = new CatFactory();
+        Animal cat = factory.createAnimal();
+        Food catFood = factory.createFood();
+        cat.speak();      // 输出: 喵喵！
+        catFood.feed();   // 输出: 给猫喂食
+    }
+}
+```
+
+## 常用的查找算法
+
+- 线性/顺序查找算法
+
+```java
+public class LinearSearchDemo {
+
+    /**
+     * 线性查找方法
+     * @param arr 查找的数组
+     * @param target 要查找的目标值
+     * @return 目标值在数组中的索引，若不存在则返回 -1
+     */
+    public static int linearSearch(int[] arr, int target) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == target) {
+                return i; // 找到，返回索引
+            }
+        }
+        return -1; // 未找到
+    }
+
+    public static void main(String[] args) {
+        int[] numbers = {10, 20, 30, 40, 50, 60};
+        int target = 40;
+
+        int result = linearSearch(numbers, target);
+
+        if (result != -1) {
+            System.out.println("目标值 " + target + " 在数组中的索引为: " + result);
+        } else {
+            System.out.println("目标值 " + target + " 未在数组中找到");
+        }
+    }
+}
+```
+
+- 二分查找
+
+```java
+public class BinarySearchDemo {
+
+    /**
+     * 二分查找方法
+     * @param arr 已排序的数组（升序）
+     * @param target 要查找的目标值
+     * @return 目标值在数组中的索引，若不存在则返回 -1
+     */
+    public static int binarySearch(int[] arr, int target) {
+        int left = 0;
+        int right = arr.length - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2; // 防止溢出
+
+            if (arr[mid] == target) {
+                return mid; // 找到，返回索引
+            } else if (arr[mid] < target) {
+                left = mid + 1; // 在右半部分查找
+            } else {
+                right = mid - 1; // 在左半部分查找
+            }
+        }
+
+        return -1; // 未找到
+    }
+
+    public static void main(String[] args) {
+        int[] sortedArray = {10, 20, 30, 40, 50, 60, 70};
+        int target = 40;
+
+        int result = binarySearch(sortedArray, target);
+
+        if (result != -1) {
+            System.out.println("目标值 " + target + " 在数组中的索引为: " + result);
+        } else {
+            System.out.println("目标值 " + target + " 未在数组中找到");
+        }
+    }
+}
+```
+
+- 冒泡排序
+
+```java
+public class BubbleSortDemo {
+
+    /**
+     * 冒泡排序实现
+     * @param arr 待排序的整型数组
+     */
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length;
+        boolean swapped;
+
+        for (int i = 0; i < n - 1; i++) {
+            swapped = false;
+
+            // 每轮将当前最大的元素“冒泡”到末尾
+            for (int j = 0; j < n - 1 - i; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    // 交换 arr[j] 和 arr[j+1]
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    swapped = true;
+                }
+            }
+
+            // 如果本轮没有发生交换，说明数组已有序，提前结束
+            if (!swapped) break;
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] data = {64, 34, 25, 12, 22, 11, 90};
+
+        System.out.println("排序前:");
+        printArray(data);
+
+        bubbleSort(data);
+
+        System.out.println("排序后:");
+        printArray(data);
+    }
+
+    /**
+     * 打印数组内容
+     */
+    private static void printArray(int[] arr) {
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+}
+```
