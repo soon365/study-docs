@@ -879,6 +879,110 @@ public class IfElseIfElse
 }
 ```
 
+```java
+/*
+    使用if-slse if-else分支结构判断所在等级并打印
+*/
+import java.util.Scanner;
+public class AnLi11
+{
+    public static void main(String[] args)
+    {
+        System.out.println("请输入考试成绩：");
+        Scanner sc =new Scanner(System.in);
+        int cj = sc.nextInt();
+        if(cj <= 59)
+        {
+            System.out.println("你考试的成绩是等级E");
+        }
+        else if(60 <= cj && cj <= 69)
+        {
+            System.out.println("你考试的成绩是等级D");
+        }
+        else if(70 <= cj && cj <= 79)
+        {
+            System.out.println("你考试的成绩是等级C");
+        }
+        else if(80 <= cj && cj <= 89)
+        {
+            System.out.println("你考试的成绩是等级B");
+        }
+        else 
+        {
+            System.out.println("你考试的成绩是等级A");
+        }
+    }
+}
+```
+
+### swithch-case分支结构
+
+1. 语法格式
+
+   switch(变量/表达式)
+
+   {
+
+   ​	case 字面值1：语句块1；break；
+
+   ​	case 字面值2：语句块2；break；
+
+   ​	……
+
+   ​	default：语句块n;
+
+   }
+
+2. 执行流程
+
+   计算变量/表达式的数值⇒判断是否匹配字面值1
+
+   ⇒若匹配，则执行语句块1⇒执行break跳出当前结构
+
+   ⇒若不匹配，则判断是否匹配字面值2
+
+   ​	⇒若匹配，则执行语句块2⇒执行break跳出当前结构
+
+   ​	⇒若不匹配，则执行语句块n
+
+```java
+/*
+    使用switch-case分支结构判断所在等级并打印
+*/
+import java.util.Scanner;
+public class AnLi12
+{
+    public static void main(String[] args)
+    {
+        System.out.println("请输入考试成绩：");
+        Scanner sc =new Scanner(System.in);
+        int cj = sc.nextInt();
+        switch(cj / 10)
+        {
+            case (10): System.out.println("你考试的成绩是等级A");break;
+            case (9) : System.out.println("你考试的成绩是等级A");break;
+            case (8) : System.out.println("你考试的成绩是等级B");break;
+            case (7) : System.out.println("你考试的成绩是等级C");break;
+            case (6) : System.out.println("你考试的成绩是等级D");break;
+            default  : System.out.println("你考试的成绩是等级E");
+        }
+        System.out.println("世界上最痴情的等待就是你在switch我在default,也许永远都不会选到自己!");
+    }
+}
+```
+
+> [!IMPORTANT]
+>
+> switch()中支持的数据类型有：byte、short、char以及int类型，从jdk1.5开始支持枚举类型，从jdk1.7开始支持String类型。
+>
+> 如果没有break case会一直穿透下去
+
+```java
+
+```
+
+
+
 ## 循环结构
 
 基本概念
@@ -994,19 +1098,36 @@ public class AnLi7
 
 ```java
 /*
-    编程使用for循环实现1~100之间的累加和并打印
+    猜数字
 */
-public class AnLi7
+import java.util.Scanner;
+import java.util.Random;
+public class AnLi8
 {
     public static void main(String[] args)
     {
-        //声明局部变量记录累加的结果
-        int team = 0;
-        for(int i = 1; i <= 100; i++)
+        Random ra = new Random();
+        int da = ra.nextInt(100) + 1;
+        System.out.println(da);
+        int zi = 0;
+        for(;;)
         {
-            team += i;
+            System.out.println("请输入你的所猜的数字：");
+            Scanner sc = new Scanner(System.in); 
+            zi = sc.nextInt();
+            if(zi > da)
+            {
+                System.out.println("你猜大了!");
+            }
+            else if(zi < da)
+            {
+                System.out.println("你猜小了!");
+            }
+            else
+            {
+               System.out.println("恭喜你猜对了!");break;
+            }
         }
-        System.out.println("最终的累加结果是：" + team);
     }
 }
 ```
@@ -1167,6 +1288,8 @@ public class forfor2
 
 break用于退出当前语句块，break用在循环体中用于退出循环。
 
+如果要退出外层循环体，需要使用标号的方式。
+
 continue语句用在循环体中，用于结束本次循环而开始下一次循环。
 
 for( ; ; ) - 这种没有循环条件的循环叫做无限循环，俗称“死循环”。
@@ -1229,5 +1352,120 @@ public class ForChat
 }
 ```
 
+### while循环
 
+1. 语法格式
 
+   while(条件表达式)
+
+   {
+
+   循环体;
+
+   }
+
+2. 执行流程
+
+   判断条件表达式是否成立
+
+   ​	⇒若成立，则执行循环体⇒判断条件表达式是否成立
+
+   ​	⇒若不成立，则循环结束
+
+```java
+/*
+   编程实现while循环的使用
+ */
+public class While 
+{
+    public static void main(String[] args) 
+    {
+        for (int i = 1; i <= 10; i++) 
+        {
+            System.out.println("i = " + i);
+        }
+        System.out.println("--------------------");
+        int i = 1;
+        while (i <= 10) 
+        {
+            System.out.println("i = " + i);
+            i++;
+        }
+    }
+}
+
+```
+
+```java
+/*
+   编程使用while循环计算1/1+ 1/2 + 1/3 + ... + 1/n的累加和并打印出来
+ */
+import java.util.Scanner;
+public class AnLi9 
+{
+    public static void main(String[] args)
+    {
+        System.out.print("请输入一个正整数n：");
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        double u = 0.0;
+        int i = 1;
+        while (i < n) 
+        {
+            u += 1.0 / i;
+            i++;   
+        }
+        System.out.println("最终的累加和为：" + u);
+    }
+}
+
+```
+
+> [!IMPORTANT]
+>
+> while语句和for都是“当型循环”可以完全互换
+>
+> while(true)等价于for( ; ; ) 表示无限循环
+>
+> while循环用于明确循环条件但不明确循环次数的场合中；
+>
+> for循环主要明确次数或范围的场合中；
+
+```java
+/*
+    编程实现它可以随机生成扑克牌
+*/
+import java.util.Random;
+public class AnLi13
+{
+    public static void main(String[] args)
+    {   for(int i = 0;i < 3; i++)
+        {
+            Random ra = new Random();
+            System.out.print("随机生成扑克牌是：");
+            int color = ra.nextInt(4);
+            switch(color)
+            {
+                case 0: System.out.print("红桃");break;
+                case 1: System.out.print("黑桃");break;
+                case 2: System.out.print("梅花");break;
+                case 3: System.out.print("方片");break;
+            }
+            int point = ra.nextInt(13) + 1;
+            switch(point)
+            {
+                case 1:System.out.println("A");break;
+                case 11:System.out.println("J");break;
+                case 12:System.out.println("Q");break;
+                case 13:System.out.println("K");break;
+                default:System.out.println(point); 
+            }
+        }
+        
+    }
+}
+```
+
+## 数组
+
+### 一维数组
