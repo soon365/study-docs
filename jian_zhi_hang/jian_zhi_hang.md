@@ -1470,9 +1470,86 @@ public class AnLi13
 
 ### 一维数组
 
-基本概念：当需要在程序中记录单个数据内容时，则声明一个变量即可；
+1. 基本概念：当需要在程序中记录单个数据内容时，则声明一个变量即可；
 
-当需要在程序中记录多个类型相同的数据内容时，则声明一维数据即可，一维数组的本质就是在内存中申请一段连续的储存单元。
+   当需要在程序中记录多个类型相同的数据内容时，则声明一维数据即可，一维数组的本质就是在内存中申请一段连续的储存单元。
+
+2. 数组长度-主要指数组的容量或最多可以存放的元数个数。
+
+   —数组名.length
+
+3. 数组的访问
+
+   调用数组的length属性可以获取数组的长度：int len = arr.length;
+
+4. 元素的初始化
+
+   数据类型 数组名称[] = {元素值1，元素值2，…};
+
+5. 声明方式
+
+   语法格式
+
+   数据类型[] 数组名称  = new 数据类型[数组的长度]；
+
+   数据类型 数组名称[]  = new 数据类型[数组的长度]；
+
+```java
+/*
+    编程实现数组的声明和打印
+*/
+
+public class shuzu
+{
+    public static void main(String[] args)
+    {   //1.声明一个长度为3元素类型为int类型的一维数组
+        int arr[] =new int[3];
+        System.out.println("数组的长度是：" + arr.length);//3
+        System.out.println("下标为0的元素是:" + arr[0]);//默认值0
+        System.out.println("下标为1的元素是:" + arr[1]);//默认值0
+        System.out.println("下标为2的元素是:" + arr[2]);//默认值0
+        //编译ok 运行产生ArrayIndexOutOfBoundsException
+        //System.out.println("下标为3的元素是:" + arr[3]);
+        System.out.println("--------------------------");
+        for(int i = 0; i < arr.length; i++)
+        {
+        System.out.println("下标为" + i + "的元素是:" + arr[i]);
+        }
+        System.out.println("--------------------------");
+        double shuzu[] =new double[5];
+        for(int i = 0; i < shuzu.length; i++)
+        {
+        System.out.println("下标为" + i + "的元素是:" + shuzu[i]);
+        }
+        System.out.println("--------------------------");
+        //arr[0] = 11; arr[1] = 22; arr[2] = 33;
+        for(int i = 0; i < arr.length; i++)
+        {
+            arr[i] = ( i + 1 )*11;
+        }
+        for(int i = 0; i < arr.length; i++)
+        {
+        System.out.println("下标为" + i + "的元素是:" + arr[i]);
+        }
+        System.out.println("--------------------------");
+        int tshuzu[] = {10, 20, 30, 40, 50};
+        System.out.println("数组的长度是：" + tshuzu.length);
+        for(int i = 0; i < tshuzu.length; i++)
+        {
+        System.out.println("下标为" + i + "的元素是:" + tshuzu[i]);
+        }
+        System.out.println("--------------------------");
+        int ishuzu[] = new int[]{1, 2, 3, 4, 5};
+        System.out.println("数组的长度是：" + ishuzu.length);
+        for(int i = 0; i < ishuzu.length; i++)
+        {
+        System.out.println("下标为" + i + "的元素是:" + ishuzu[i]);
+        }
+    }
+}
+```
+
+
 
 ```java
 
